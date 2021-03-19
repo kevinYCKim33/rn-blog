@@ -1,31 +1,33 @@
-import React from 'react';
+import React from "react";
 // import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import IndexScreen from './src/screens/IndexScreen';
-import { Provider } from './src/context/BlogContext';
-import ShowScreen from './src/screens/ShowScreen';
-import CreateScreen from './src/screens/CreateScreen';
-import EditScreen from './src/screens/EditScreen';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import IndexScreen from "./src/screens/IndexScreen";
+import { Provider } from "./src/context/BlogContext"; // his syntax is a bit quirky but it's really no more different than my Context.Provider
+import ShowScreen from "./src/screens/ShowScreen";
+import CreateScreen from "./src/screens/CreateScreen";
+import EditScreen from "./src/screens/EditScreen";
 
 // again very v4 like
+// there isn't anything here that's that egrigious...
 const navigator = createStackNavigator(
   {
     Index: IndexScreen,
     Show: ShowScreen,
     Create: CreateScreen,
-    Edit: EditScreen
+    Edit: EditScreen,
   },
   {
-    initialRouteName: 'Index',
+    initialRouteName: "Index",
     defaultNavigationOptions: {
-      title: 'Blogs'
-    }
+      title: "Blogs",
+    },
   }
 );
 
 const App = createAppContainer(navigator);
 
+// he uses Provider a bit more interestingly...
 export default () => {
   return (
     <Provider>
