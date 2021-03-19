@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
+// shared by both CreateScreen and EditScreen
+
+// onSubmit: fire addBlogPost or editBlogPost respectively...
 const BlogPostForm = ({ onSubmit, initialValues }) => {
   const [title, setTitle] = useState(initialValues.title);
   const [content, setContent] = useState(initialValues.content);
@@ -11,40 +14,43 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
       <TextInput
         style={styles.input}
         value={title}
-        onChangeText={text => setTitle(text)}
+        onChangeText={(text) => setTitle(text)}
       />
       <Text style={styles.label}>Enter Content:</Text>
       <TextInput
         style={styles.input}
         value={content}
-        onChangeText={text => setContent(text)}
+        onChangeText={(text) => setContent(text)}
       />
+      {/*the Save word could've been dynamic but it's alright*/}
       <Button title="Save Blog Post" onPress={() => onSubmit(title, content)} />
     </View>
   );
 };
 
+// oh dang default props...getting pretty serious...
+// I could've used this for ClientSummary??
 BlogPostForm.defaultProps = {
   initialValues: {
-    title: '',
-    content: ''
-  }
+    title: "",
+    content: "",
+  },
 };
 
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black",
     marginBottom: 15,
     padding: 5,
-    margin: 5
+    margin: 5,
   },
   label: {
     fontSize: 20,
     marginBottom: 5,
-    marginLeft: 5
-  }
+    marginLeft: 5,
+  },
 });
 
 export default BlogPostForm;
