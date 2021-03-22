@@ -28,6 +28,7 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator);
 
 // he uses Provider a bit more interestingly...
+// v4 really makes things not look reacty for Context stuff
 export default () => {
   return (
     <Provider>

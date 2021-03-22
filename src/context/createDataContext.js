@@ -15,6 +15,7 @@ export default (reducer, actions, initialState) => {
   const Context = createContext(); // surprised there's nothing in here...
   // very confusing what the proper createContext syntax is...
 
+  // why not just declare this
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     // the state will just be an array of blog posts
@@ -22,8 +23,15 @@ export default (reducer, actions, initialState) => {
 
     // the only thing I'm kind of confused by...
     // actions === { addBlogPost: (dispatch) => { return () => {} } }
+
+    // sighhh he is explaining this part...
+    // https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707494#questions
     const boundActions = {};
+    // loop through the actions
+    // call it a dispatch
+    // still don't fully get it...
     for (let key in actions) {
+      // bind each action to dispatch
       boundActions[key] = actions[key](dispatch);
     }
 

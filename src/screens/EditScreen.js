@@ -22,6 +22,7 @@ const EditScreen = ({ navigation }) => {
       onSubmit={(title, content) => {
         // this is almost currying...or is it??
         // reverse currying? or actual currying?
+        // pop is good, because it takes you right back to the add page
         editBlogPost(id, title, content, () => navigation.pop());
       }}
     />

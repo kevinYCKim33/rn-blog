@@ -11,6 +11,10 @@ const CreateScreen = ({ navigation }) => {
   return (
     <BlogPostForm
       onSubmit={(title, content) => {
+        // addBlogPost takes in a callback
+        // I would've done a promise instead and do a .then?
+        // but oh well
+        // anyways don't do navigation.navigate("Index") in newline
         addBlogPost(title, content, () => navigation.navigate("Index"));
       }}
     />

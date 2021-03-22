@@ -7,6 +7,9 @@ import jsonServer from "../api/jsonServer"; // super cool local server that can 
 
 // looks super reducer-y
 // just return me some updated object that's all reducers are
+// all the returns: what the new state will be
+// is this THAT much better than useState??
+// state is just blogPosts[]
 const blogReducer = (state, action) => {
   switch (action.type) {
     case "get_blogposts":
@@ -33,6 +36,7 @@ const getBlogPosts = (dispatch) => {
 };
 
 const addBlogPost = (dispatch) => {
+  // why is it wrapped in a function?
   return async (title, content, callback) => {
     // hit server
     await jsonServer.post("/blogposts", { title, content });
@@ -67,7 +71,7 @@ const editBlogPost = (dispatch) => {
       payload: { id, title, content },
     });
     if (callback) {
-      callback(); // return back
+      callback(); // return back // navigation.pop()
     }
   };
 };
@@ -76,6 +80,8 @@ const editBlogPost = (dispatch) => {
 // ? what is createDataContext
 // Provider gets imported by App to wrap everything in
 // Context gets imported by every component to access state and dispatch actions
+
+// I guess this is more reusuable...but mehh
 export const { Context, Provider } = createDataContext(
   blogReducer,
   // C, D, U, G, no show?

@@ -28,12 +28,23 @@ const IndexScreen = ({ navigation }) => {
     // this is still a curious one...
     // addListener on the navigation prop??
     // didFocus??
+
+    // ANSWER:
+    // even when we nagivate away from the Index page
+    // the Index page is still mounted
+    // I guess the better question is, can't we set something
+    // in the [] array to re-fire useEffect when there's a new/edited post?
+    // Alternatively, we could have also just refetched index after create/edit
+    // but this seems cuter
+
+    // didFocus: when this screen is the main focus
     const listener = navigation.addListener("didFocus", () => {
       getBlogPosts();
     });
 
     // componentDidUnmount
     // had to use once for Uppy
+    // a cleanup function, but don't think this will ever fire in this App example
     return () => {
       listener.remove();
     };
