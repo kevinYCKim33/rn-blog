@@ -25,6 +25,11 @@ const blogReducer = (state, action) => {
   }
 };
 
+// aha moment: these actions are not bound to any useReducer dispatch method by itself
+// THE CONNECTIONS HAPPENS INSIDE createDataContext in the Provider
+// it's currying/closure, what have you
+// getBlogPosts(dispatch from useReducer)()
+// when the last () fires, the dispatch that is tied to the useReducer is remembered through closure and executed here
 const getBlogPosts = (dispatch) => {
   return async () => {
     // hit server

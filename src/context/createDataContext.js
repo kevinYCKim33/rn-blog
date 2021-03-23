@@ -18,6 +18,8 @@ export default (reducer, actions, initialState) => {
   // why not just declare this
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    debugger;
+    // the only way to update the state is to dispatch an action to the reducer
     // the state will just be an array of blog posts
     // Typescript really would've helped out here...
 
@@ -32,7 +34,10 @@ export default (reducer, actions, initialState) => {
     // still don't fully get it...
     for (let key in actions) {
       // bind each action to dispatch
+      // before: getBlogPosts: ƒ getBlogPosts(dispatch)
       boundActions[key] = actions[key](dispatch);
+      // after: getBlogPosts: function that once executed; will fire dispatch that is bound to the useReducer function
+      // YES!! IT MAKES SENSE NOW!
     }
 
     // all I know is that do this..., and now you have all Crud actions
